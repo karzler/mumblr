@@ -12,11 +12,6 @@
   color: white;    /*Text color for each item*/
 }
  
-/*Changes the border for the last item*/
-.custom .item:last-child {
-  border-bottom: 1px solid #666;
-}
- 
 .custom .item-complex .item-content, .dark .item-radio .item-content {
   background-color: transparent;
 }
@@ -29,4 +24,5 @@
   color: white;  /*Text color for each item, overrides the color property above*/
 }
 
+.slider { height: 100%; text-align: center 
 

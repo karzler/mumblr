@@ -52,5 +52,13 @@ angular.module('starter.controllers', [])
   ];
 })
 
+.controller('HomeCtrl', function($scope, $state, $ionicSlideBoxDelegate) {
+
+  // $ionicSlideBoxDelegate.update();
+$scope.nextSlide = function() {
+    $ionicSlideBoxDelegate.next();
+  }
+
+})
 .controller('PlaylistCtrl', function($scope, $stateParams) {
 });
