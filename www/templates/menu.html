@@ -27,6 +27,20 @@
         <ion-item class="item item-icon-left" menu-close href="#/app/posts">
           <i class="icon ion-ios-paper" ></i> Posts
         </ion-item>
+        <div ng-repeat="group in groups">
+          <ion-item class="item item-icon-left"
+                    ng-click="toggleGroup(group)"
+                    ng-class="{active: isGroupShown(group)}">
+              <i class="icon" ng-class="isGroupShown(group) ? 'ion-minus' : 'ion-plus'"></i>
+            &nbsp;
+            Group {{group.name}}
+          </ion-item>
+          <ion-item class="item-accordion"
+                    ng-repeat="item in group.items"
+                    ng-show="isGroupShown(group)">
+            {{item}}
+          </ion-item>
+        </div>
         <ion-item class="item item-icon-left" menu-close ng-click="login()">
           <i class="icon ion-key" ></i> Login
         </ion-item>

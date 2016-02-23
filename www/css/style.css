@@ -24,5 +24,20 @@
   color: white;  /*Text color for each item, overrides the color property above*/
 }
 
-.slider { height: 100%; text-align: center 
+.slider { height: 100%; text-align: center }
+.scroll { height: 100% }
 
+.custom .list .item.item-accordion {
+  line-height: 38px;
+  padding-top: 0;
+  padding-bottom: 0;
+  transition: 0.09s all linear;
+  background-color: transparent;
+}
+.custom .list .item.item-accordion.ng-hide {
+  line-height: 0px;
+}
+.custom .list .item.item-accordion.ng-hide-add,
+.custom .list .item.item-accordion.ng-hide-remove {
+  display: block !important;
+}
