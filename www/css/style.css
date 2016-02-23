@@ -41,3 +41,8 @@
 .custom .list .item.item-accordion.ng-hide-remove {
   display: block !important;
 }
+
+.html_body {
+  color: #ffffff;
+  background-color: #f0f0f0;
+}

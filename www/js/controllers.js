@@ -8,7 +8,10 @@ angular.module('starter.controllers', [])
   // listen for the $ionicView.enter event:
   //$scope.$on('$ionicView.enter', function(e) {
   //});
-  $scope.posts_right = []
+  
+  $scope.snippet = "<h1>Rendering HTML within ionic. Yayyy!!</h1>";
+
+  $scope.posts_right = [];
   for (var i=0; i < 10; i++) {
     $scope.posts_right[i] = {
       name: 'Post ' + i.toString()
