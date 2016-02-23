@@ -28,15 +28,15 @@ angular.module('starter', ['ionic', 'mumblr.controllers'])
 
   .state('app', {
     url: '/app',
-    abstract: true,    //
-    templateUrl: 'templates/menu.html',
+    abstract: true,
+    templateUrl: 'templates/base.html',
     controller: 'AppCtrl'
   })
 
   .state('app.home', {
     url: '/home',
     views: {
-      'menuContent': {
+      'mainContent': {
         templateUrl: 'templates/home.html'
       }
     }
@@ -45,7 +45,7 @@ angular.module('starter', ['ionic', 'mumblr.controllers'])
   .state('app.search', {
     url: '/search',
     views: {
-      'menuContent': {
+      'mainContent': {
         templateUrl: 'templates/search.html'
       }
     }
@@ -54,7 +54,7 @@ angular.module('starter', ['ionic', 'mumblr.controllers'])
   .state('app.posts', {
     url: '/posts',
     views: {
-      'menuContent': {
+      'mainContent': {
         templateUrl: 'templates/posts.html'
       }
     }
@@ -63,7 +63,7 @@ angular.module('starter', ['ionic', 'mumblr.controllers'])
   .state('app.post', {
     url: '/posts/:postId',
     views: {
-      'menuContent': {
+      'mainContent': {
         templateUrl: 'templates/post.html',
       }
     }
@@ -73,7 +73,7 @@ angular.module('starter', ['ionic', 'mumblr.controllers'])
   .state('app.browse', {
     url: '/browse',
     views: {
-      'menuContent': {
+      'mainContent': {
         templateUrl: 'templates/browse.html'
       }
     }
@@ -82,7 +82,7 @@ angular.module('starter', ['ionic', 'mumblr.controllers'])
   .state('app.bookmarks', {
     url: '/bookmarks',
     views: {
-      'menuContent': {
+      'mainContent': {
         templateUrl: 'templates/bookmarks.html',
         controller: 'BookmarksCtrl'
       }
