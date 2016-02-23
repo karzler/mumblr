@@ -14,7 +14,7 @@
         </button>
       </ion-nav-buttons>
     </ion-nav-bar>
-    <ion-nav-view name="menuContent"></ion-nav-view>
+    <ion-nav-view name="mainContent"></ion-nav-view>
   </ion-side-menu-content>
 
   <ion-side-menu side="left">
@@ -33,9 +33,7 @@
           <i class="icon ion-ios-paper" ></i> Posts
         </ion-item>
         <div ng-repeat="group in groups">
-          <ion-item class="item item-icon-left"
-                    ng-click="toggleGroup(group)"
-                    ng-class="{active: isGroupShown(group)}">
+          <ion-item class="item item-icon-left" ng-click="toggleGroup(group)" ng-class="{active: isGroupShown(group)}">
               <i class="icon" ng-class="isGroupShown(group) ? 'ion-minus' : 'ion-plus'"></i>
             &nbsp;
             Group {{group.name}}
@@ -64,7 +62,7 @@
       <ion-list>
         <div ng-repeat="post in posts_right">
           <ion-item class="item item-icon-left" menu-close href="#/app/posts"> {{post.name}}
-        </ion-item>
+          </ion-item>
         </div>
       </ion-list>
     </ion-content>

@@ -4,7 +4,7 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers'])
+angular.module('starter', ['ionic', 'mumblr.controllers'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -23,19 +23,29 @@ angular.module('starter', ['ionic', 'starter.controllers'])
 })
 
 .config(function($stateProvider, $urlRouterProvider) {
+
   $stateProvider
 
-    .state('app', {
+  .state('app', {
     url: '/app',
     abstract: true,
-    templateUrl: 'templates/menu.html',
+    templateUrl: 'templates/base.html',
     controller: 'AppCtrl'
+  })
+
+  .state('app.home', {
+    url: '/home',
+    views: {
+      'mainContent': {
+        templateUrl: 'templates/home.html'
+      }
+    }
   })
 
   .state('app.search', {
     url: '/search',
     views: {
-      'menuContent': {
+      'mainContent': {
         templateUrl: 'templates/search.html'
       }
     }
@@ -44,47 +54,42 @@ angular.module('starter', ['ionic', 'starter.controllers'])
   .state('app.posts', {
     url: '/posts',
     views: {
-      'menuContent': {
+      'mainContent': {
         templateUrl: 'templates/posts.html'
       }
     }
   })
-  .state('app.home', {
-      url: '/home',
-      views: {
-        'menuContent': {
-          templateUrl: 'templates/home.html'
-        }
-      }
-    })
 
-  .state('app.browse', {
-      url: '/browse',
-      views: {
-        'menuContent': {
-          templateUrl: 'templates/browse.html'
-        }
-      }
-    })
-    .state('app.bookmarks', {
-      url: '/bookmarks',
-      views: {
-        'menuContent': {
-          templateUrl: 'templates/bookmarks.html',
-          controller: 'BookmarksCtrl'
-        }
-      }
-    })
-
-  .state('app.single', {
-    url: '/playlists/:playlistId',
+  .state('app.post', {
+    url: '/posts/:postId',
     views: {
-      'menuContent': {
-        templateUrl: 'templates/playlist.html',
-        controller: 'PlaylistCtrl'
+      'mainContent': {
+        templateUrl: 'templates/post.html',
       }
     }
-  });
-  // if none of the above states are matched, use this as the fallback
+  })
+
+
+  .state('app.browse', {
+    url: '/browse',
+    views: {
+      'mainContent': {
+        templateUrl: 'templates/browse.html'
+      }
+    }
+  })
+
+  .state('app.bookmarks', {
+    url: '/bookmarks',
+    views: {
+      'mainContent': {
+        templateUrl: 'templates/bookmarks.html',
+        controller: 'BookmarksCtrl'
+      }
+    }
+  })
+
+
+  // If none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/app/home');
 });

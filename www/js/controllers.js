@@ -1,13 +1,14 @@
-angular.module('starter.controllers', [])
-
-.controller('AppCtrl', function($scope, $ionicModal, $timeout) {
+angular.module('mumblr.controllers', [])
 
   // With the new view caching in Ionic, Controllers are only called
   // when they are recreated or on app start, instead of every page change.
   // To listen for when this page is active (for example, to refresh data),
   // listen for the $ionicView.enter event:
-  //$scope.$on('$ionicView.enter', function(e) {
-  //});
+  // $scope.$on('$ionicView.enter', function(e) {
+  // });
+
+
+.controller('AppCtrl', function($scope, $ionicModal, $timeout) {
   
   $scope.snippet = "<h1>Rendering HTML within ionic. Yayyy!!</h1>";
 
@@ -40,6 +41,7 @@ angular.module('starter.controllers', [])
       $scope.shownGroup = group;
     }
   };
+
   $scope.isGroupShown = function(group) {
     return $scope.shownGroup === group;
   };
@@ -90,10 +92,8 @@ angular.module('starter.controllers', [])
 .controller('HomeCtrl', function($scope, $state, $ionicSlideBoxDelegate) {
 
   // $ionicSlideBoxDelegate.update();
-$scope.nextSlide = function() {
+  $scope.nextSlide = function() {
     $ionicSlideBoxDelegate.next();
   }
 
 })
-.controller('PlaylistCtrl', function($scope, $stateParams) {
-});
