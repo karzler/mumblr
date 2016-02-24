@@ -106,12 +106,27 @@ angular.module('mumblr.controllers', [])
 
 .controller('PostsCtrl', function($scope, $http) {
 
-  // Posts fetched here
-   $http.jsonp(posts_url)
-    .success(function(data){
+  var fetch_posts = function() {
+    // Posts fetched here
+    $http.jsonp(posts_url)
+      .success(function(data) {
         console.log("Tumblr Posts")
         console.log(data.response.posts);
         tumblr_posts = data.response.posts;
         $scope.posts = tumblr_posts;
-    });
+      })
+     .finally(function() {
+       // Stop the ion-refresher from spinning
+       $scope.$broadcast('scroll.refreshComplete');
+     });
+  };
+
+  // Call once at beginning
+  fetch_posts();
+
+
+  $scope.doRefresh = function(data) {
+    // TODO: Perhaps, fetch only new posts on pull down and not all
+    fetch_posts();
+  }
 })
