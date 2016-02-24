@@ -1,3 +1,9 @@
+var TUMBLR_CONSUMER_KEY =  "nN1exTh0UWcevkH0LY5QyNaRQACwQ9BpjA3KQp97MXS3as3Hpg";
+var TUMBLR_SECRET_KEY = "ADZPKEd4KbNCOjG9tHVgzofIACLfefmgCWDdb7KO3h1VbhL8SN";
+var TUMBLR_BLOG_NAME = "fitcruncher";
+var posts_url = "http://api.tumblr.com/v2/blog/" + TUMBLR_BLOG_NAME + ".tumblr.com/posts/text?api_key=" + TUMBLR_CONSUMER_KEY + "&callback=JSON_CALLBACK";
+var tumblr_posts;
+
 angular.module('mumblr.controllers', [])
 
   // With the new view caching in Ionic, Controllers are only called
@@ -8,8 +14,15 @@ angular.module('mumblr.controllers', [])
   // });
 
 
-.controller('AppCtrl', function($scope, $ionicModal, $timeout) {
+.controller('AppCtrl', function($scope, $ionicModal, $timeout, $http) {
   
+   // TODO: Fetching of posts should be shifted to posts controller
+   $http.jsonp(posts_url)
+    .success(function(data){
+        console.log("Tumblr Posts:")
+        console.log(data.response.posts);
+    });
+
   $scope.snippet = "<h1>Rendering HTML within ionic. Yayyy!!</h1>";
 
   $scope.posts_right = [];
@@ -96,4 +109,8 @@ angular.module('mumblr.controllers', [])
     $ionicSlideBoxDelegate.next();
   }
 
+})
+
+.controller('PostsCtrl', function($scope, $http) {
+  // Posts should be fetched here
 })
