@@ -1,6 +1,9 @@
 <ion-view view-title="Posts">
   <ion-content class="posts">
-    <h1>Posts. Requires Tumblr API to work with.</h1>
-    <div class="html_body" ng-bind-html="snippet"></div>
+    <h1>Posts </h1>
+    <div ng-repeat="post in posts">
+        <div>{{post.summary}}</div>
+        <!--div class="html_body" ng-bind-html="snippet"></div-->
+    </div>
   </ion-content>
 </ion-view>

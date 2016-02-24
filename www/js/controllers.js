@@ -15,15 +15,8 @@ angular.module('mumblr.controllers', [])
 
 
 .controller('AppCtrl', function($scope, $ionicModal, $timeout, $http) {
-  
-   // TODO: Fetching of posts should be shifted to posts controller
-   $http.jsonp(posts_url)
-    .success(function(data){
-        console.log("Tumblr Posts:")
-        console.log(data.response.posts);
-    });
 
-  $scope.snippet = "<h1>Rendering HTML within ionic. Yayyy!!</h1>";
+  //$scope.snippet = "<h1>Rendering HTML within ionic. Yayyy!!</h1>";
 
   $scope.posts_right = [];
   for (var i=0; i < 10; i++) {
@@ -112,5 +105,13 @@ angular.module('mumblr.controllers', [])
 })
 
 .controller('PostsCtrl', function($scope, $http) {
-  // Posts should be fetched here
+
+  // Posts fetched here
+   $http.jsonp(posts_url)
+    .success(function(data){
+        console.log("Tumblr Posts")
+        console.log(data.response.posts);
+        tumblr_posts = data.response.posts;
+        $scope.posts = tumblr_posts;
+    });
 })
