@@ -22,7 +22,10 @@ angular.module('mumblr', ['ionic', 'mumblr.controllers'])
   });
 })
 
-.config(function($stateProvider, $urlRouterProvider) {
+.config(function($stateProvider, $urlRouterProvider, $interpolateProvider) {
+
+  //$interpolateProvider.startSymbol('[[{');
+  //$interpolateProvider.endSymbol(']]}');
 
   $stateProvider
 
@@ -93,4 +96,5 @@ angular.module('mumblr', ['ionic', 'mumblr.controllers'])
 
   // If none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/app/home');
+
 });
