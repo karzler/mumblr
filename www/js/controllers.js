@@ -115,7 +115,7 @@ angular.module('mumblr.controllers', [])
 
 })
 
-.controller('PostsCtrl', function($scope, $http) {
+.controller('PostsCtrl', function($scope, $http, $sce) {
 
   $scope.posts = [];
   $scope.load_more_enabled = true;
@@ -131,6 +131,9 @@ angular.module('mumblr.controllers', [])
       .success(function(data) {
         console.log("Tumblr Posts")
         console.log(data.response.posts);
+        for(i=0;i<data.response.posts.length;i++){
+          data.response.posts[i].body = $sce.trustAsHtml(data.response.posts[i].body);
+        }
         tumblr_posts = data.response.posts;
 
         if (clear) {
