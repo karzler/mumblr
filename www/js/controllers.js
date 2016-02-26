@@ -162,18 +162,18 @@ angular.module('mumblr.controllers', [])
   }
 
 
-  $scope.curr_offset = POSTS_PER_PAGE;
+  var curr_offset = POSTS_PER_PAGE;
   $scope.loadMore = function(data) {
 
     if ($scope.load_more_enabled) {
       console.log("Current Offset");
-      console.log($scope.curr_offset);
-      posts_url = get_tumblr_posts_url($scope.curr_offset);
+      console.log(curr_offset);
+      posts_url = get_tumblr_posts_url(curr_offset);
 
       // Fetch posts after current offset
       fetch_posts(posts_url, false);  // Do not clear existing posts while loading more
 
-      $scope.curr_offset += POSTS_PER_PAGE; // Increment current offset by 20 so that next time posts are loaded from 40
+      curr_offset += POSTS_PER_PAGE; // Increment current offset by 20 so that next time posts are loaded from 40
     } else {
       // No more posts to show
       // console.log("No more posts");
