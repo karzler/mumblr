@@ -125,7 +125,6 @@ angular.module('mumblr.controllers', [])
     // When clear=true, all the existing posts in array in memory are cleared.
     //
 
-    $scope.curr_offset = POSTS_PER_PAGE;
 
     $http.jsonp(posts_url)
       .success(function(data) {
@@ -142,6 +141,7 @@ angular.module('mumblr.controllers', [])
      .finally(function() {
        // Stop the ion-refresher from spinning
        $scope.$broadcast('scroll.refreshComplete');
+       $scope.$broadcast('scroll.infiniteScrollComplete');
      });
   };
 
@@ -154,7 +154,11 @@ angular.module('mumblr.controllers', [])
     fetch_posts(default_posts_url, true);  // Clear existing posts from array on refresh
   }
 
+
+  $scope.curr_offset = POSTS_PER_PAGE;
   $scope.loadMore = function(data) {
+    console.log("Current Offset");
+    console.log($scope.curr_offset);
     posts_url = get_tumblr_posts_url($scope.curr_offset);
 
     // Fetch posts after current offset
