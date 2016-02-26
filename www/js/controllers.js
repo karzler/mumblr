@@ -118,6 +118,7 @@ angular.module('mumblr.controllers', [])
 .controller('PostsCtrl', function($scope, $http) {
 
   $scope.posts = [];
+  $scope.load_more_enabled = true;
 
   var fetch_posts = function(posts_url, clear) {
     //
@@ -135,7 +136,12 @@ angular.module('mumblr.controllers', [])
         if (clear) {
             $scope.posts = []
         }
-        $scope.posts = $scope.posts.concat(data.response.posts);
+        $scope.posts = $scope.posts.concat(tumblr_posts);
+
+        if (tumblr_posts.length < POSTS_PER_PAGE) {
+            $scope.load_more_enabled = false;
+            console.log("Load more disabled")
+        }
       })
 
      .finally(function() {
@@ -152,18 +158,26 @@ angular.module('mumblr.controllers', [])
   $scope.doRefresh = function(data) {
     // TODO: Perhaps, fetch only new posts on pull down and not all
     fetch_posts(default_posts_url, true);  // Clear existing posts from array on refresh
+    $scope.load_more_enabled = true;       // Enable loading more posts on infinite-scroll
   }
 
 
   $scope.curr_offset = POSTS_PER_PAGE;
   $scope.loadMore = function(data) {
-    console.log("Current Offset");
-    console.log($scope.curr_offset);
-    posts_url = get_tumblr_posts_url($scope.curr_offset);
 
-    // Fetch posts after current offset
-    fetch_posts(posts_url, false);  // Do not clear existing posts while loading more
+    if ($scope.load_more_enabled) {
+      console.log("Current Offset");
+      console.log($scope.curr_offset);
+      posts_url = get_tumblr_posts_url($scope.curr_offset);
 
-    $scope.curr_offset += POSTS_PER_PAGE; // Increment current offset by 20 so that next time posts are loaded from 40
+      // Fetch posts after current offset
+      fetch_posts(posts_url, false);  // Do not clear existing posts while loading more
+
+      $scope.curr_offset += POSTS_PER_PAGE; // Increment current offset by 20 so that next time posts are loaded from 40
+    } else {
+      // No more posts to show
+      // console.log("No more posts");
+      $scope.$broadcast('scroll.infiniteScrollComplete');
+    }
   }
 })
