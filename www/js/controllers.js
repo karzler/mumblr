@@ -30,6 +30,7 @@ angular.module('mumblr.controllers', [])
 
   //$scope.snippet = "<h1>Rendering HTML within ionic. Yayyy!!</h1>";
 
+
   $scope.posts_right = [];
   for (var i=0; i < 10; i++) {
     $scope.posts_right[i] = {
