@@ -16,7 +16,7 @@ var get_tumblr_posts_url = function(offset, limit) {
 
 var tumblr_posts;
 
-angular.module('mumblr.controllers', [])
+angular.module('mumblr.controllers', ['ionic','ngCordova'])
 
   // With the new view caching in Ionic, Controllers are only called
   // when they are recreated or on app start, instead of every page change.
@@ -117,7 +117,7 @@ angular.module('mumblr.controllers', [])
 
 })
 
-.controller('PostsCtrl', function($scope, $http, $sce) {
+.controller('PostsCtrl', function($scope, $http, $sce, $cordovaToast) {
 
   $scope.posts = [];
   $scope.load_more_enabled = true;
@@ -144,6 +144,7 @@ angular.module('mumblr.controllers', [])
 
         if (tumblr_posts.length < POSTS_PER_PAGE) {
             $scope.load_more_enabled = false;
+            showToast("No more posts to show" ,'short', 'bottom');
             console.log("Load more disabled")
         }
       })
@@ -159,6 +160,13 @@ angular.module('mumblr.controllers', [])
   // Fetch posts once at the beggining
   fetch_posts(default_posts_url, true);
 
+  var showToast = function(message, duration, location) {
+        $cordovaToast.show(message, duration, location).then(function(success) {
+            console.log("The toast was shown");
+        }, function (error) {
+            console.log("The toast was not shown due to " + error);
+        });
+    }
 
   $scope.doRefresh = function(data) {
     // TODO: Perhaps, fetch only new posts on pull down and not all
