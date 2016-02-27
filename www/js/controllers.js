@@ -1,7 +1,7 @@
 var TUMBLR_CONSUMER_KEY =  "nN1exTh0UWcevkH0LY5QyNaRQACwQ9BpjA3KQp97MXS3as3Hpg";
 var TUMBLR_SECRET_KEY = "ADZPKEd4KbNCOjG9tHVgzofIACLfefmgCWDdb7KO3h1VbhL8SN";
 var TUMBLR_BLOG_NAME = "fitcruncher";
-var posts_url = "http://api.tumblr.com/v2/blog/" + TUMBLR_BLOG_NAME + ".tumblr.com/posts/text?api_key=" + TUMBLR_CONSUMER_KEY + "&callback=JSON_CALLBACK";
+var posts_url = "http://api.tumblr.com/v2/blog/" + TUMBLR_BLOG_NAME + ".tumblr.com/posts?api_key=" + TUMBLR_CONSUMER_KEY + "&callback=JSON_CALLBACK";
 var tumblr_posts;
 
 angular.module('mumblr.controllers', [])
@@ -123,6 +123,7 @@ angular.module('mumblr.controllers', [])
 
   // Call once at beginning
   fetch_posts();
+
 
 
   $scope.doRefresh = function(data) {
