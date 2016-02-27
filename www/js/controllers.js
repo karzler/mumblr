@@ -104,7 +104,7 @@ angular.module('mumblr.controllers', [])
 
 })
 
-.controller('PostsCtrl', function($scope, $http) {
+.controller('PostsCtrl', function($scope, $sce, $http) {
 
   var fetch_posts = function() {
     // Posts fetched here
@@ -112,6 +112,9 @@ angular.module('mumblr.controllers', [])
       .success(function(data) {
         console.log("Tumblr Posts")
         console.log(data.response.posts);
+        for(i=0;i<data.response.posts.length;i++){
+          data.response.posts[i].body = $sce.trustAsHtml(data.response.posts[i].body);
+        }
         tumblr_posts = data.response.posts;
         $scope.posts = tumblr_posts;
       })
