@@ -58,50 +58,12 @@ angular.module('mumblr', ['ionic', 'mumblr.controllers'])
     }
   })
 
-  .state('app.search', {
-    url: '/search',
-    views: {
-      'mainContent': {
-        templateUrl: 'templates/search.html'
-      }
-    }
-  })
-
   .state('app.posts', {
     url: '/posts',
     views: {
       'mainContent': {
         templateUrl: 'templates/posts.html',
         controller: 'PostsCtrl'
-      }
-    }
-  })
-
-  .state('app.post', {
-    url: '/posts/:postId',
-    views: {
-      'mainContent': {
-        templateUrl: 'templates/post.html',
-      }
-    }
-  })
-
-
-  .state('app.browse', {
-    url: '/browse',
-    views: {
-      'mainContent': {
-        templateUrl: 'templates/browse.html'
-      }
-    }
-  })
-
-  .state('app.bookmarks', {
-    url: '/bookmarks',
-    views: {
-      'mainContent': {
-        templateUrl: 'templates/bookmarks.html',
-        controller: 'BookmarksCtrl'
       }
     }
   })
